@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>YUKI HUB — Script Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg0:#010306;--bg1:#040710;--bg2:#070c18;--bg3:#0b1224;
+  --cyan:#00e5ff;--cyan2:#7df0ff;--cyan3:#003344;
+  --violet:#7c3aff;--violet2:#b07dff;--violet3:#1a0a40;
+  --green:#00ff88;--green2:#00cc66;
+  --red:#ff2244;--orange:#ff8c00;--gold:#e8c76a;--gold2:#ffed9f;
+  --t1:#eef4ff;--t2:#8aaccc;--t3:#3a5070;--t4:#1a2840;
+  --font-mono:'Share Tech Mono',monospace;
+  --font:'Rajdhani',sans-serif;
+  --font-head:'Orbitron',sans-serif;
+}
+html,body{background:var(--bg0);color:var(--t1);font-family:var(--font);overflow-x:hidden;scroll-behavior:smooth}
+
+/* scanlines */
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,229,255,.009) 2px,rgba(0,229,255,.009) 4px)}
+
+/* ── AMBIENT ── */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);animation:drift 20s ease-in-out infinite}
+.o1{width:700px;height:700px;top:-220px;right:-180px;background:radial-gradient(rgba(0,229,255,.07),transparent 65%);animation-delay:0s}
+.o2{width:500px;height:500px;bottom:-180px;left:-120px;background:radial-gradient(rgba(124,58,255,.06),transparent 65%);animation-delay:10s}
+.o3{width:400px;height:400px;top:50%;left:42%;background:radial-gradient(rgba(0,255,136,.04),transparent 65%);animation-delay:5s}
+.o4{width:280px;height:280px;bottom:25%;right:8%;background:radial-gradient(rgba(232,199,106,.04),transparent 65%);animation-delay:14s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(18px,-28px) scale(1.04)}}
+
+/* ── LAYOUT ── */
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 22px 100px}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:13px 26px;margin:13px 0 0;
+  border-radius:5px;
+  background:rgba(4,7,16,.94);
+  border:1px solid rgba(0,229,255,.12);
+  border-top:2px solid var(--cyan);
+  backdrop-filter:blur(28px);
+  position:sticky;top:9px;z-index:50;
+  box-shadow:0 4px 40px rgba(0,0,0,.6),0 0 40px rgba(0,229,255,.04);
+}
+.nav-brand{display:flex;align-items:center;gap:14px}
+.nav-logo{font-family:var(--font-head);font-size:1.25rem;font-weight:900;
+  letter-spacing:.15em;color:var(--cyan);text-shadow:0 0 24px rgba(0,229,255,.4)}
+.nav-logo em{color:var(--violet2);font-style:normal}
+.nav-pill{font-family:var(--font-mono);font-size:.6rem;padding:3px 10px;
+  border-radius:2px;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);
+  color:var(--cyan);letter-spacing:.12em}
+.nav-links{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.nl{padding:7px 15px;border-radius:3px;border:1px solid rgba(0,229,255,.1);
+  background:transparent;color:var(--t2);font-size:.78rem;font-weight:600;
+  cursor:pointer;transition:.18s;text-decoration:none;font-family:var(--font);
+  letter-spacing:.07em;text-transform:uppercase}
+.nl:hover{border-color:rgba(0,229,255,.3);color:var(--cyan);background:rgba(0,229,255,.06)}
+.nl.active{border-color:rgba(0,229,255,.35);color:var(--cyan);background:rgba(0,229,255,.08)}
+.nl.cta{background:rgba(0,229,255,.12);border-color:rgba(0,229,255,.4);
+  color:var(--cyan);font-weight:700;box-shadow:0 0 16px rgba(0,229,255,.08)}
+.nl.cta:hover{background:rgba(0,229,255,.2);box-shadow:0 0 28px rgba(0,229,255,.18)}
+
+/* ── TICKER ── */
+.ticker-wrap{overflow:hidden;border-bottom:1px solid rgba(0,229,255,.08);
+  background:rgba(0,229,255,.025);padding:6px 0}
+.ticker{display:flex;white-space:nowrap;animation:tick 32s linear infinite}
+.ticker span{font-family:var(--font-mono);font-size:.68rem;color:var(--cyan);
+  padding:0 28px;opacity:.55;letter-spacing:.1em}
+.ticker .sep{color:var(--t4);padding:0}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── HERO ── */
+.hero{padding:90px 0 70px;position:relative}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}}
+
+.hero-eyebrow{font-family:var(--font-mono);font-size:.72rem;color:var(--cyan);
+  letter-spacing:.22em;opacity:.7;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--cyan);opacity:.5}
+
+.hero-title{font-family:var(--font-head);font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:900;line-height:.88;letter-spacing:.04em;margin-bottom:14px}
+.hero-title .t-cyan{color:var(--cyan);text-shadow:0 0 40px rgba(0,229,255,.25);display:block}
+.hero-title .t-white{color:var(--t1);display:block}
+.hero-title .t-small{font-size:.32em;letter-spacing:.4em;color:var(--t3);
+  display:block;margin-top:14px;font-family:var(--font);font-weight:300;text-shadow:none}
+
+.hero-desc{color:var(--t2);line-height:1.85;font-size:.97rem;
+  margin-bottom:30px;max-width:500px}
+
+.hero-stats{display:flex;gap:0;margin-bottom:34px;
+  border:1px solid rgba(0,229,255,.1);border-radius:4px;overflow:hidden;max-width:420px}
+.hs{flex:1;padding:16px 12px;text-align:center;background:rgba(4,7,16,.8)}
+.hs+.hs{border-left:1px solid rgba(0,229,255,.08)}
+.hs-v{font-family:var(--font-head);font-size:1.5rem;font-weight:900;color:var(--cyan)}
+.hs-l{font-size:.6rem;font-family:var(--font-mono);color:var(--t3);
+  letter-spacing:.15em;text-transform:uppercase;margin-top:3px}
+
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+
+/* hero right — script preview terminal */
+.hero-terminal{border-radius:6px;overflow:hidden;
+  background:rgba(2,5,12,.97);border:1px solid rgba(0,229,255,.18);
+  box-shadow:0 0 60px rgba(0,229,255,.06),0 24px 60px rgba(0,0,0,.6)}
+.term-bar{display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;background:rgba(0,229,255,.06);
+  border-bottom:1px solid rgba(0,229,255,.1)}
+.term-dots{display:flex;gap:6px}
+.td{width:10px;height:10px;border-radius:50%}
+.term-title{font-family:var(--font-mono);font-size:.66rem;color:var(--t3);letter-spacing:.1em}
+.term-body{padding:20px 22px;font-family:var(--font-mono);font-size:.78rem;line-height:1.9}
+.tl{display:flex;gap:12px;margin-bottom:2px}
+.tl-prompt{color:var(--t3);flex-shrink:0}
+.tl-cmd{color:var(--cyan2)}
+.tl-out{color:var(--green);padding-left:24px}
+.tl-err{color:var(--red);padding-left:24px}
+.tl-info{color:var(--t2);padding-left:24px}
+.tl-gold{color:var(--gold);padding-left:24px}
+.tl-empty{height:10px}
+.cursor{display:inline-block;width:8px;height:14px;background:var(--cyan);
+  vertical-align:middle;animation:blink-cur .9s step-end infinite;margin-left:2px}
+@keyframes blink-cur{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;
+  border-radius:3px;font-family:var(--font);font-size:.86rem;font-weight:700;
+  cursor:pointer;border:0;transition:.2s cubic-bezier(.22,1,.36,1);
+  text-decoration:none;letter-spacing:.08em;text-transform:uppercase}
+.btn-cyan{background:rgba(0,229,255,.12);border:1px solid rgba(0,229,255,.4);
+  color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,.1)}
+.btn-cyan:hover{background:rgba(0,229,255,.2);box-shadow:0 0 36px rgba(0,229,255,.22);transform:translateY(-2px)}
+.btn-violet{background:rgba(124,58,255,.12);border:1px solid rgba(124,58,255,.4);
+  color:var(--violet2)}
+.btn-violet:hover{background:rgba(124,58,255,.22);box-shadow:0 0 30px rgba(124,58,255,.2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--t2)}
+.btn-ghost:hover{border-color:rgba(0,229,255,.25);color:var(--cyan);transform:translateY(-2px)}
+.btn-green{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--green)}
+.btn-green:hover{background:rgba(0,255,136,.18);box-shadow:0 0 24px rgba(0,255,136,.15);transform:translateY(-2px)}
+.btn-sm{padding:8px 16px;font-size:.75rem}
+
+/* ── SECTION ── */
+.sec{padding:80px 0}
+.sec-head{margin-bottom:50px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.sec-head-left{}
+.sec-eyebrow{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:10px;
+  display:flex;align-items:center;gap:10px}
+.sec-eyebrow::before{content:'//';color:var(--t4)}
+.sec-eyebrow::after{content:'';height:1px;width:50px;background:linear-gradient(90deg,rgba(0,229,255,.3),transparent)}
+.sec-title{font-family:var(--font-head);font-size:clamp(1.6rem,3.5vw,2.3rem);
+  font-weight:900;color:var(--t1);letter-spacing:.04em}
+.sec-sub{color:var(--t3);font-size:.88rem;line-height:1.7;margin-top:8px;max-width:480px}
+.sec-action{flex-shrink:0}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.12),transparent);margin:0}
+
+/* ── SCRIPT CARDS ── */
+.scripts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:1000px){.scripts-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.scripts-grid{grid-template-columns:1fr}}
+
+.script-card{
+  border-radius:6px;overflow:hidden;cursor:pointer;position:relative;
+  background:rgba(4,7,16,.95);
+  border:1px solid rgba(0,229,255,.1);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .2s;
+}
+.script-card:hover{
+  transform:translateY(-8px) scale(1.015);
+  border-color:rgba(0,229,255,.32);
+  box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 30px rgba(0,229,255,.07);
+}
+.script-card.violet:hover{border-color:rgba(124,58,255,.32);box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 30px rgba(124,58,255,.07)}
+.script-card.gold:hover{border-color:rgba(232,199,106,.32);box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 30px rgba(232,199,106,.07)}
+.script-card.green:hover{border-color:rgba(0,255,136,.28);box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 30px rgba(0,255,136,.06)}
+
+/* top accent line */
+.script-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--cyan),transparent)}
+.script-card.violet::before{background:linear-gradient(90deg,var(--violet2),transparent)}
+.script-card.gold::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.script-card.green::before{background:linear-gradient(90deg,var(--green),transparent)}
+
+.sc-header{padding:22px 22px 16px;position:relative}
+.sc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.sc-icon{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;font-size:1.5rem;
+  background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.15)}
+.script-card.violet .sc-icon{background:rgba(124,58,255,.1);border-color:rgba(124,58,255,.2)}
+.script-card.gold .sc-icon{background:rgba(232,199,106,.1);border-color:rgba(232,199,106,.2)}
+.script-card.green .sc-icon{background:rgba(0,255,136,.08);border-color:rgba(0,255,136,.15)}
+
+.sc-badges{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+.sc-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;
+  border-radius:2px;font-size:.6rem;font-weight:700;letter-spacing:.1em;
+  font-family:var(--font-mono);text-transform:uppercase}
+.b-live{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.28);color:var(--green)}
+.b-dev{background:rgba(255,140,0,.1);border:1px solid rgba(255,140,0,.28);color:var(--orange)}
+.b-soon{background:rgba(232,199,106,.1);border:1px solid rgba(232,199,106,.25);color:var(--gold)}
+.b-new{background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.28);color:var(--cyan)}
+.b-hot{background:rgba(255,34,68,.1);border:1px solid rgba(255,34,68,.28);color:var(--red)}
+.b-free{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:var(--green2)}
+
+.sc-name{font-family:var(--font-head);font-size:1rem;font-weight:900;
+  color:var(--t1);letter-spacing:.06em;margin-bottom:5px}
+.sc-ver{font-family:var(--font-mono);font-size:.66rem;color:var(--t3);letter-spacing:.1em}
+
+.sc-desc{padding:0 22px 16px;color:var(--t2);font-size:.83rem;line-height:1.65}
+
+.sc-tags{display:flex;gap:6px;flex-wrap:wrap;padding:0 22px 16px}
+.sc-tag{padding:3px 10px;border-radius:2px;font-size:.62rem;font-family:var(--font-mono);
+  letter-spacing:.07em;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:var(--t3)}
+
+.sc-footer{padding:14px 22px;border-top:1px solid rgba(0,229,255,.07);
+  display:flex;align-items:center;justify-content:space-between;gap:10px}
+.script-card.violet .sc-footer{border-top-color:rgba(124,58,255,.07)}
+.script-card.gold .sc-footer{border-top-color:rgba(232,199,106,.06)}
+
+.sc-progress{flex:1}
+.sc-prog-label{font-size:.62rem;font-family:var(--font-mono);color:var(--t3);
+  letter-spacing:.08em;margin-bottom:5px;display:flex;justify-content:space-between}
+.sc-prog-bar{height:4px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}
+.sc-prog-fill{height:100%;border-radius:999px;transition:width 1s cubic-bezier(.22,1,.36,1)}
+.fill-cyan{background:linear-gradient(90deg,var(--cyan),var(--cyan2))}
+.fill-violet{background:linear-gradient(90deg,var(--violet),var(--violet2))}
+.fill-gold{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.fill-green{background:linear-gradient(90deg,var(--green2),var(--green))}
+
+.sc-link{padding:6px 14px;border-radius:3px;font-size:.68rem;font-family:var(--font-mono);
+  letter-spacing:.08em;text-decoration:none;transition:.15s;white-space:nowrap;font-weight:700;text-transform:uppercase}
+.sl-cyan{border:1px solid rgba(0,229,255,.3);color:var(--cyan);background:rgba(0,229,255,.06)}
+.sl-cyan:hover{background:rgba(0,229,255,.15);box-shadow:0 0 14px rgba(0,229,255,.1)}
+.sl-violet{border:1px solid rgba(124,58,255,.3);color:var(--violet2);background:rgba(124,58,255,.06)}
+.sl-violet:hover{background:rgba(124,58,255,.15)}
+.sl-gold{border:1px solid rgba(232,199,106,.3);color:var(--gold);background:rgba(232,199,106,.06)}
+.sl-gold:hover{background:rgba(232,199,106,.14)}
+.sl-green{border:1px solid rgba(0,255,136,.28);color:var(--green);background:rgba(0,255,136,.06)}
+.sl-green:hover{background:rgba(0,255,136,.14)}
+.sl-disabled{border:1px solid rgba(255,255,255,.07);color:var(--t3);cursor:not-allowed}
+
+/* ── FEATURED BIG CARD ── */
+.featured-card{
+  border-radius:8px;overflow:hidden;
+  background:rgba(4,7,16,.97);
+  border:1px solid rgba(0,229,255,.16);
+  border-top:2px solid var(--cyan);
+  box-shadow:0 0 60px rgba(0,229,255,.05),0 30px 80px rgba(0,0,0,.5);
+  display:grid;grid-template-columns:1fr 1fr;margin-bottom:16px;
+}
+@media(max-width:780px){.featured-card{grid-template-columns:1fr}}
+.fc-left{padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.fc-right{padding:32px 36px 32px 0;display:flex;flex-direction:column;justify-content:center;gap:12px}
+@media(max-width:780px){.fc-right{padding:0 36px 36px}}
+
+.fc-eyebrow{font-family:var(--font-mono);font-size:.65rem;color:var(--cyan);
+  letter-spacing:.2em;display:flex;align-items:center;gap:8px}
+.fc-title{font-family:var(--font-head);font-size:clamp(1.8rem,3vw,2.8rem);
+  font-weight:900;color:var(--t1);letter-spacing:.04em;line-height:.95}
+.fc-desc{color:var(--t2);font-size:.9rem;line-height:1.75}
+
+.fc-stats-row{display:flex;gap:12px;flex-wrap:wrap}
+.fc-stat{padding:12px 16px;border-radius:4px;
+  background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.1);flex:1;min-width:80px}
+.fc-stat-v{font-family:var(--font-head);font-size:1.3rem;color:var(--cyan);font-weight:900}
+.fc-stat-l{font-size:.6rem;font-family:var(--font-mono);color:var(--t3);letter-spacing:.12em;margin-top:3px}
+
+.fc-feature-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fc-feature-list li{display:flex;gap:10px;align-items:center;font-size:.87rem;color:var(--t2)}
+.fc-feature-list li::before{content:'›';color:var(--cyan);font-size:1rem;flex-shrink:0}
+
+/* ── DEV PROGRESS ── */
+.dev-section{padding:80px 0}
+.dev-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.dev-grid{grid-template-columns:1fr}}
+
+.dev-card{border-radius:5px;padding:26px 24px;
+  background:rgba(4,7,16,.95);border:1px solid rgba(0,229,255,.09);
+  position:relative;overflow:hidden}
+.dev-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,229,255,.15),transparent)}
+.dev-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.dev-name{font-family:var(--font-head);font-size:.9rem;font-weight:900;
+  color:var(--t1);letter-spacing:.06em}
+.dev-pct{font-family:var(--font-mono);font-size:.82rem;color:var(--cyan);font-weight:700}
+.dev-desc{color:var(--t3);font-size:.8rem;line-height:1.6;margin-bottom:14px}
+.dev-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden;margin-bottom:10px}
+.dev-bar-fill{height:100%;border-radius:999px}
+.dev-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.dev-tags{display:flex;gap:5px;flex-wrap:wrap}
+.dev-tag{padding:2px 8px;border-radius:2px;font-size:.6rem;font-family:var(--font-mono);
+  letter-spacing:.07em;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.12);color:var(--t3)}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
+.about-card{border-radius:5px;padding:32px 28px;
+  background:rgba(4,7,16,.95);border:1px solid rgba(0,229,255,.1)}
+.about-icon{font-size:2.2rem;margin-bottom:14px;display:block}
+.about-title{font-family:var(--font-head);font-size:1rem;font-weight:900;
+  color:var(--t1);letter-spacing:.06em;margin-bottom:10px}
+.about-desc{color:var(--t2);font-size:.85rem;line-height:1.7}
+.about-row{display:flex;justify-content:space-between;padding:10px 0;
+  border-bottom:1px solid rgba(0,229,255,.06);font-size:.85rem}
+.about-row:last-child{border-bottom:0;padding-bottom:0}
+.about-label{color:var(--t3);font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em}
+.about-val{color:var(--t1);font-weight:700;text-align:right}
+.about-val.cyan{color:var(--cyan)}
+.about-val.violet{color:var(--violet2)}
+.about-val.green{color:var(--green)}
+
+/* ── CONTACT BANNER ── */
+.cta-banner{
+  border-radius:6px;padding:56px 48px;margin:0 0 0;
+  background:rgba(4,7,16,.97);
+  border:1px solid rgba(0,229,255,.14);
+  border-top:2px solid var(--cyan);
+  text-align:center;position:relative;overflow:hidden;
+  box-shadow:0 0 60px rgba(0,229,255,.04)
+}
+.cta-banner::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,.04),transparent 55%)}
+.cta-title{font-family:var(--font-head);font-size:clamp(1.5rem,3.5vw,2.4rem);
+  font-weight:900;color:var(--t1);margin-bottom:12px;position:relative}
+.cta-desc{color:var(--t2);max-width:520px;margin:0 auto 30px;line-height:1.75;
+  font-size:.92rem;position:relative}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid rgba(0,229,255,.08);padding:44px 22px 36px;position:relative;z-index:1}
+.footer-inner{max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+@media(max-width:700px){.footer-inner{grid-template-columns:1fr}}
+.footer-logo{font-family:var(--font-head);font-size:1.4rem;color:var(--cyan);
+  letter-spacing:.15em;margin-bottom:10px;text-shadow:0 0 20px rgba(0,229,255,.25)}
+.footer-logo em{color:var(--violet2);font-style:normal}
+.footer-desc{color:var(--t3);font-size:.82rem;line-height:1.7;
+  font-family:var(--font-mono);max-width:280px}
+.footer-col-title{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--t3);margin-bottom:14px}
+.footer-links{display:flex;flex-direction:column;gap:9px}
+.footer-links a{color:var(--t2);font-size:.83rem;text-decoration:none;transition:.15s;font-family:var(--font)}
+.footer-links a:hover{color:var(--cyan)}
+.footer-bottom{max-width:1280px;margin:28px auto 0;padding-top:20px;
+  border-top:1px solid rgba(0,229,255,.06);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;color:var(--t4);font-size:.68rem;font-family:var(--font-mono);letter-spacing:.1em}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:22px;right:22px;z-index:200;
+  padding:11px 20px;border-radius:3px;
+  background:rgba(1,4,10,.98);border:1px solid rgba(0,229,255,.3);
+  color:var(--cyan);font-weight:700;font-size:.78rem;font-family:var(--font-mono);
+  letter-spacing:.08em;opacity:0;transition:.25s;pointer-events:none;
+  box-shadow:0 0 30px rgba(0,229,255,.1)}
+.toast.show{opacity:1}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg0)}
+::-webkit-scrollbar-thumb{background:rgba(0,229,255,.25);border-radius:999px}
+</style>
+</head>
+<body>
+
+<div class="ambient">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="orb o3"></div><div class="orb o4"></div>
+</div>
+
+<div class="wrap">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">YUKI<em>HUB</em></div>
+    <div class="nav-pill">v2.0 BETA</div>
+  </div>
+  <div class="nav-links">
+    <a class="nl active" onclick="goto('#scripts')">Scripts</a>
+    <a class="nl" onclick="goto('#dev')">In Dev</a>
+    <a class="nl" onclick="goto('#about')">About</a>
+    <a class="nl" href="zenonix.html">Zenonix Hub</a>
+    <a class="nl cta" href="https://discord.gg/CjNwU75h" target="_blank">💬 Discord</a>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker"></div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">OFFICIAL SCRIPT COLLECTION • BY YUKI</div>
+      <h1 class="hero-title">
+        <span class="t-cyan">YUKI</span>
+        <span class="t-white">HUB</span>
+        <span class="t-small">SCRIPT COLLECTION · ROBLOX</span>
+      </h1>
+      <p class="hero-desc">Bộ sưu tập script Roblox chất lượng cao được phát triển bởi <strong style="color:var(--cyan)">Yuki (imz-yuki)</strong>. Tự động cập nhật, hỗ trợ nhiều game, giao diện đẹp và ổn định.</p>
+
+      <div class="hero-stats">
+        <div class="hs"><div class="hs-v">4+</div><div class="hs-l">Scripts</div></div>
+        <div class="hs"><div class="hs-v">FREE</div><div class="hs-l">Giá</div></div>
+        <div class="hs"><div class="hs-v">∞</div><div class="hs-l">Update</div></div>
+        <div class="hs"><div class="hs-v" style="color:var(--green)">LIVE</div><div class="hs-l">Status</div></div>
+      </div>
+
+      <div class="hero-cta">
+        <a class="btn btn-cyan" onclick="goto('#scripts')">⌬ Xem Scripts</a>
+        <a class="btn btn-violet" href="zenonix.html">🔷 Zenonix Hub</a>
+        <a class="btn btn-ghost" href="https://discord.gg/CjNwU75h" target="_blank">💬 Discord</a>
+      </div>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="hero-terminal">
+      <div class="term-bar">
+        <div class="term-dots">
+          <div class="td" style="background:#ff5f57"></div>
+          <div class="td" style="background:#febc2e"></div>
+          <div class="td" style="background:#28c840"></div>
+        </div>
+        <div class="term-title">yuki_hub_loader.lua</div>
+        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--green);display:flex;align-items:center;gap:5px">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink-cur 1.5s ease-in-out infinite"></div>LIVE
+        </div>
+      </div>
+      <div class="term-body">
+        <div class="tl"><span class="tl-prompt">$</span><span class="tl-cmd">execute zenonix_bootstrapper</span></div>
+        <div class="tl-empty"></div>
+        <div class="tl-out">⌬ YUKI HUB LOADING...</div>
+        <div class="tl-out">  Welcome, Itamaru!</div>
+        <div class="tl-empty"></div>
+        <div class="tl-info">  [✓] Bootstrapper v1.0 initialized</div>
+        <div class="tl-info">  [✓] Fetching latest from GitHub...</div>
+        <div class="tl-info">  [✓] Script loaded successfully</div>
+        <div class="tl-gold">  [★] Zenonix Hub is ready!</div>
+        <div class="tl-empty"></div>
+        <div class="tl"><span class="tl-prompt">$</span><span class="tl-cmd">status --all<span class="cursor"></span></span></div>
+        <div class="tl-empty"></div>
+        <div class="tl-out">  Zenonix Hub    → <span style="color:var(--green)">ONLINE v1.0</span></div>
+        <div class="tl-out">  Kaizen Hub     → <span style="color:var(--green)">ONLINE v14</span></div>
+        <div class="tl-out">  Meo Bot        → <span style="color:var(--green)">ONLINE v1.0</span></div>
+        <div class="tl-out">  Aurramon Web   → <span style="color:var(--green)">ONLINE v2</span></div>
+        <div class="tl-out">  BountyTracker  → <span style="color:var(--orange)">IN DEV</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURED -->
+<section class="sec" id="featured">
+  <div class="sec-head">
+    <div class="sec-head-left">
+      <div class="sec-eyebrow">Featured Script</div>
+      <div class="sec-title">Script Nổi Bật</div>
+    </div>
+  </div>
+
+  <!-- ZENONIX BIG CARD -->
+  <div class="featured-card">
+    <div class="fc-left">
+      <div>
+        <div class="fc-eyebrow"><div style="width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink-cur 1.5s ease-in-out infinite"></div>FEATURED · LATEST RELEASE</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0">
+          <span class="sc-badge b-live">● LIVE</span>
+          <span class="sc-badge b-new">✦ v1.0</span>
+          <span class="sc-badge b-free">FREE</span>
+        </div>
+      </div>
+      <div class="fc-title">ZENONIX<br>HUB</div>
+      <div class="fc-desc">Script hub chính thức của Yuki. Bootstrapper tự động tải script mới nhất từ GitHub, hỗ trợ nhiều game Roblox với UI glassmorphism đẹp và ổn định.</div>
+      <div class="fc-stats-row">
+        <div class="fc-stat"><div class="fc-stat-v">v1.0</div><div class="fc-stat-l">Version</div></div>
+        <div class="fc-stat"><div class="fc-stat-v">5+</div><div class="fc-stat-l">Games</div></div>
+        <div class="fc-stat"><div class="fc-stat-v">∞</div><div class="fc-stat-l">Auto Update</div></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-cyan btn-sm" href="zenonix.html">⌬ Xem Chi Tiết</a>
+        <button class="btn btn-ghost btn-sm" onclick="copyScript('zenonix')">📋 Copy Script</button>
+      </div>
+    </div>
+    <div class="fc-right">
+      <div style="font-family:var(--font-mono);font-size:.66rem;color:var(--t3);letter-spacing:.12em;margin-bottom:10px">// TÍNH NĂNG CHÍNH</div>
+      <ul class="fc-feature-list">
+        <li>Auto-load từ GitHub — luôn dùng version mới nhất</li>
+        <li>Anti-duplicate load với _G flag bảo vệ</li>
+        <li>pcall protection — không crash game khi lỗi</li>
+        <li>Copy Skin Pokémon 3D từ Aurramon</li>
+        <li>Giao diện UI glassmorphism hiện đại</li>
+        <li>Hỗ trợ executor: Synapse, KRNL, Script-Ware</li>
+        <li>Welcome message khi load thành công</li>
+        <li>Modular — dễ mở rộng tính năng mới</li>
+      </ul>
+      <div style="margin-top:16px;padding:14px 16px;border-radius:4px;background:rgba(0,0,0,.4);border:1px solid rgba(0,229,255,.12)">
+        <div style="font-family:var(--font-mono);font-size:.66rem;color:var(--t3);letter-spacing:.1em;margin-bottom:6px">// QUICK LOAD</div>
+        <div style="font-family:var(--font-mono);font-size:.74rem;color:var(--cyan2);word-break:break-all;line-height:1.6" id="zenonix-script">loadstring(game:HttpGet("https://raw.githubusercontent.com/imz-yuki/zenonixhub/refs/heads/main/copyskin.lua"))()</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ALL SCRIPTS -->
+<section class="sec" id="scripts">
+  <div class="sec-head">
+    <div class="sec-head-left">
+      <div class="sec-eyebrow">Script Collection</div>
+      <div class="sec-title">Tất Cả Scripts</div>
+      <div class="sec-sub">Bộ sưu tập script Roblox và tool của Yuki — cập nhật thường xuyên</div>
+    </div>
+    <div class="sec-action">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" onclick="filterCards('all',this)" id="f-all" style="color:var(--cyan);border-color:rgba(0,229,255,.3)">Tất cả</button>
+        <button class="btn btn-ghost btn-sm" onclick="filterCards('live',this)" id="f-live">Live</button>
+        <button class="btn btn-ghost btn-sm" onclick="filterCards('dev',this)" id="f-dev">In Dev</button>
+        <button class="btn btn-ghost btn-sm" onclick="filterCards('soon',this)" id="f-soon">Soon</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="scripts-grid" id="scriptsGrid">
+
+    <!-- ZENONIX HUB -->
+    <div class="script-card" data-status="live">
+      <div class="sc-header">
+        <div class="sc-top">
+          <div class="sc-icon">⌬</div>
+          <div class="sc-badges">
+            <span class="sc-badge b-live">● LIVE</span>
+            <span class="sc-badge b-new">v1.0</span>
+          </div>
+        </div>
+        <div class="sc-name">ZENONIX HUB</div>
+        <div class="sc-ver">// imz-yuki/zenonixhub</div>
+      </div>
+      <div class="sc-desc">Script hub chính thức. Bootstrapper tự tải từ GitHub, anti-duplicate load, pcall protection. Hỗ trợ nhiều game Roblox phổ biến.</div>
+      <div class="sc-tags">
+        <span class="sc-tag">BLOX FRUITS</span>
+        <span class="sc-tag">UNIVERSAL</span>
+        <span class="sc-tag">FREE</span>
+        <span class="sc-tag">OPEN SOURCE</span>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-progress">
+          <div class="sc-prog-label"><span>COMPLETION</span><span>100%</span></div>
+          <div class="sc-prog-bar"><div class="sc-prog-fill fill-cyan" style="width:100%"></div></div>
+        </div>
+        <a class="sc-link sl-cyan" href="zenonix.html">VIEW →</a>
+      </div>
+    </div>
+
+    <!-- KAIZEN HUB -->
+    <div class="script-card violet" data-status="live">
+      <div class="sc-header">
+        <div class="sc-top">
+          <div class="sc-icon" style="background:rgba(124,58,255,.1);border-color:rgba(124,58,255,.2)">🔮</div>
+          <div class="sc-badges">
+            <span class="sc-badge b-live">● LIVE</span>
+            <span class="sc-badge b-hot">🔥 HOT</span>
+          </div>
+        </div>
+        <div class="sc-name">KAIZEN HUB</div>
+        <div class="sc-ver">// Admin / Test Edition v14</div>
+      </div>
+      <div class="sc-desc">UI admin đẹp cho game của riêng bạn. 5 tab đầy đủ: Player, World, Teleport, Visual, Dev. Glassmorphism, drag, minimize, live monitor.</div>
+      <div class="sc-tags">
+        <span class="sc-tag">ADMIN PANEL</span>
+        <span class="sc-tag">DEV TOOL</span>
+        <span class="sc-tag">SAFE</span>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-progress">
+          <div class="sc-prog-label"><span>COMPLETION</span><span>100%</span></div>
+          <div class="sc-prog-bar"><div class="sc-prog-fill fill-violet" style="width:100%"></div></div>
+        </div>
+        <button class="sc-link sl-violet" onclick="copyScript('kaizen')">COPY</button>
+      </div>
+    </div>
+
+    <!-- BOUNTY TRACKER -->
+    <div class="script-card gold" data-status="live">
+      <div class="sc-header">
+        <div class="sc-top">
+          <div class="sc-icon" style="background:rgba(232,199,106,.1);border-color:rgba(232,199,106,.2)">💰</div>
+          <div class="sc-badges">
+            <span class="sc-badge b-live">● LIVE</span>
+            <span class="sc-badge b-new">v1.0</span>
+          </div>
+        </div>
+        <div class="sc-name">BOUNTY TRACKER</div>
+        <div class="sc-ver">// Blox Fruit · Check Bounty &amp; Honor</div>
+      </div>
+      <div class="sc-desc">Kiểm tra Bounty và Honor trong Blox Fruit. Leaderboard tất cả player, rank hệ thống, auto refresh, live monitor stats realtime.</div>
+      <div class="sc-tags">
+        <span class="sc-tag">BLOX FRUITS</span>
+        <span class="sc-tag">TRACKER</span>
+        <span class="sc-tag">LEADERBOARD</span>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-progress">
+          <div class="sc-prog-label"><span>COMPLETION</span><span>100%</span></div>
+          <div class="sc-prog-bar"><div class="sc-prog-fill fill-gold" style="width:100%"></div></div>
+        </div>
+        <button class="sc-link sl-gold" onclick="copyScript('bounty')">COPY</button>
+      </div>
+    </div>
+
+    <!-- MEO BOT -->
+    <div class="script-card green" data-status="live">
+      <div class="sc-header">
+        <div class="sc-top">
+          <div class="sc-icon" style="background:rgba(0,255,136,.08);border-color:rgba(0,255,136,.15)">🐱</div>
+          <div class="sc-badges">
+            <span class="sc-badge b-live">● LIVE</span>
+            <span class="sc-badge b-new">v1.0</span>
+          </div>
+        </div>
+        <div class="sc-name">MEO BOT</div>
+        <div class="sc-ver">// Discord Bot · JavaScript</div>
+      </div>
+      <div class="sc-desc">Bot Discord đầy đủ tính năng bằng Node.js + discord.js v14. Fun, Moderation, Economy, Utility. Deploy Railway/Heroku dễ dàng.</div>
+      <div class="sc-tags">
+        <span class="sc-tag">DISCORD BOT</span>
+        <span class="sc-tag">JAVASCRIPT</span>
+        <span class="sc-tag">RAILWAY</span>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-progress">
+          <div class="sc-prog-label"><span>COMPLETION</span><span>100%</span></div>
+          <div class="sc-prog-bar"><div class="sc-prog-fill fill-green" style="width:100%"></div></div>
+        </div>
+        <a class="sc-link sl-green" href="https://discord.gg/CjNwU75h" target="_blank">GET</a>
+      </div>
+    </div>
+
+    <!-- AURRAMON WEB -->
+    <div class="script-card" data-status="live">
+      <div class="sc-header">
+        <div class="sc-top">
+          <div class="sc-icon">🎮</div>
+          <div class="sc-badges">
+            <span class="sc-badge b-live">● LIVE</span>
+            <span class="sc-badge b-new">v2.0</span>
+          </div>
+        </div>
+        <div class="sc-name">AURRAMON WEB</div>
+        <div class="sc-ver">// Skin Shop · Pokémon 3D</div>
+      </div>
+      <div class="sc-desc">Website giới thiệu skin Pokémon 3D của Aurramon. 72 skin, search filter, modal chi tiết, bảng giá, gallery ảnh thực tế và shop mua bán.</div>
+      <div class="sc-tags">
+        <span class="sc-tag">WEBSITE</span>
+        <span class="sc-tag">HTML/CSS/JS</span>
+        <span class="sc-tag">POKÉMON</span>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-progress">
+          <div class="sc-prog-label"><span>COMPLETION</span><span>100%</span></div>
+          <div class="sc-prog-bar"><div class="sc-prog-fill fill-cyan" style="width:100%"></div></div>
+        </div>
+        <a class="sc-link sl-cyan" href="https://discord.gg/CjNwU75h" target="_blank">VIEW</a>
+      </div>
+    </div>
+
+    <!-- ZENONIX V2 - IN DEV -->
+    <div class="script-card violet" data-status="dev">
+      <div class="sc-header">
+        <div class="sc-top">
+          <div class="sc-icon" style="background:rgba(124,58,255,.1);border-color:rgba(124,58,255,.2)">⚡</div>
+          <div class="sc-badges">
+            <span class="sc-badge b-dev">⚙ IN DEV</span>
+            <span class="sc-badge b-soon">v2.0</span>
+          </div>
+        </div>
+        <div class="sc-name">ZENONIX HUB V2</div>
+        <div class="sc-ver">// Next Generation · ETA: Soon</div>
+      </div>
+      <div class="sc-desc">Phiên bản tiếp theo của Zenonix Hub. Thêm Player Controls, Blox Fruit checker tích hợp, ESP cơ bản, theme switcher và nhiều hơn nữa.</div>
+      <div class="sc-tags">
+        <span class="sc-tag">IN DEV</span>
+        <span class="sc-tag">UPCOMING</span>
+        <span class="sc-tag">BLOX FRUITS</span>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-progress">
+          <div class="sc-prog-label"><span>PROGRESS</span><span>35%</span></div>
+          <div class="sc-prog-bar"><div class="sc-prog-fill fill-violet" style="width:35%"></div></div>
+        </div>
+        <span class="sc-link sl-disabled">SOON</span>
+      </div>
+    </div>
+
+    <!-- UNIVERSAL GUI - IN DEV -->
+    <div class="script-card" data-status="dev">
+      <div class="sc-header">
+        <div class="sc-top">
+          <div class="sc-icon">🌐</div>
+          <div class="sc-badges">
+            <span class="sc-badge b-dev">⚙ IN DEV</span>
+          </div>
+        </div>
+        <div class="sc-name">UNIVERSAL GUI</div>
+        <div class="sc-ver">// Works on ALL Games</div>
+      </div>
+      <div class="sc-desc">Script GUI universal hoạt động trên mọi game Roblox. WalkSpeed, JumpPower, teleport, noclip (safe mode), FPS unlocker và nhiều hơn.</div>
+      <div class="sc-tags">
+        <span class="sc-tag">UNIVERSAL</span>
+        <span class="sc-tag">ALL GAMES</span>
+        <span class="sc-tag">FREE</span>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-progress">
+          <div class="sc-prog-label"><span>PROGRESS</span><span>60%</span></div>
+          <div class="sc-prog-bar"><div class="sc-prog-fill fill-cyan" style="width:60%"></div></div>
+        </div>
+        <span class="sc-link sl-disabled">BETA SOON</span>
+      </div>
+    </div>
+
+    <!-- PET SIM SCRIPT - SOON -->
+    <div class="script-card gold" data-status="soon">
+      <div class="sc-header">
+        <div class="sc-top">
+          <div class="sc-icon" style="background:rgba(232,199,106,.1);border-color:rgba(232,199,106,.2)">🐾</div>
+          <div class="sc-badges">
+            <span class="sc-badge b-soon">◌ SOON</span>
+          </div>
+        </div>
+        <div class="sc-name">PET SIM SCRIPT</div>
+        <div class="sc-ver">// Pet Simulator X · Auto Farm</div>
+      </div>
+      <div class="sc-desc">Script cho Pet Simulator X với tính năng auto collect, farm tự động và UI quản lý pet đẹp mắt. Đang trong giai đoạn nghiên cứu.</div>
+      <div class="sc-tags">
+        <span class="sc-tag">PET SIM X</span>
+        <span class="sc-tag">PLANNED</span>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-progress">
+          <div class="sc-prog-label"><span>PROGRESS</span><span>10%</span></div>
+          <div class="sc-prog-bar"><div class="sc-prog-fill fill-gold" style="width:10%"></div></div>
+        </div>
+        <span class="sc-link sl-disabled">PLANNED</span>
+      </div>
+    </div>
+
+    <!-- ANIME ADV - SOON -->
+    <div class="script-card green" data-status="soon">
+      <div class="sc-header">
+        <div class="sc-top">
+          <div class="sc-icon" style="background:rgba(0,255,136,.08);border-color:rgba(0,255,136,.15)">⚔️</div>
+          <div class="sc-badges">
+            <span class="sc-badge b-soon">◌ SOON</span>
+          </div>
+        </div>
+        <div class="sc-name">ANIME ADV HELPER</div>
+        <div class="sc-ver">// Anime Adventures · Auto Wave</div>
+      </div>
+      <div class="sc-desc">Script hỗ trợ Anime Adventures. Auto wave clear, unit manager, gem farm và nhiều tính năng giúp tiến trình nhanh hơn trong game.</div>
+      <div class="sc-tags">
+        <span class="sc-tag">ANIME ADVENTURES</span>
+        <span class="sc-tag">PLANNED</span>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-progress">
+          <div class="sc-prog-label"><span>PROGRESS</span><span>5%</span></div>
+          <div class="sc-prog-bar"><div class="sc-prog-fill fill-green" style="width:5%"></div></div>
+        </div>
+        <span class="sc-link sl-disabled">PLANNED</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEV PROGRESS -->
+<section class="dev-section" id="dev">
+  <div class="sec-head">
+    <div class="sec-head-left">
+      <div class="sec-eyebrow">Development Progress</div>
+      <div class="sec-title">Đang Phát Triển</div>
+      <div class="sec-sub">Theo dõi tiến độ các script đang được xây dựng</div>
+    </div>
+  </div>
+  <div class="dev-grid">
+    <div class="dev-card">
+      <div class="dev-card-top">
+        <div class="dev-name">ZENONIX HUB V2</div>
+        <div class="dev-pct">35%</div>
+      </div>
+      <div class="dev-desc">Player Controls, Blox Fruit checker, theme switcher, keybind config, ESP cơ bản an toàn</div>
+      <div class="dev-bar"><div class="dev-bar-fill" style="width:35%;background:linear-gradient(90deg,var(--violet),var(--violet2))"></div></div>
+      <div class="dev-meta">
+        <div class="dev-tags"><span class="dev-tag">ROBLOX</span><span class="dev-tag">LUA</span></div>
+        <span class="sc-badge b-dev" style="font-size:.58rem">⚙ ACTIVE</span>
+      </div>
+    </div>
+    <div class="dev-card">
+      <div class="dev-card-top">
+        <div class="dev-name">UNIVERSAL GUI</div>
+        <div class="dev-pct" style="color:var(--gold)">60%</div>
+      </div>
+      <div class="dev-desc">Script universal cho mọi game. Core movement done, đang xây dựng teleport và ESP module</div>
+      <div class="dev-bar"><div class="dev-bar-fill" style="width:60%;background:linear-gradient(90deg,var(--cyan),var(--cyan2))"></div></div>
+      <div class="dev-meta">
+        <div class="dev-tags"><span class="dev-tag">UNIVERSAL</span><span class="dev-tag">LUA</span></div>
+        <span class="sc-badge b-dev" style="font-size:.58rem">⚙ ACTIVE</span>
+      </div>
+    </div>
+    <div class="dev-card">
+      <div class="dev-card-top">
+        <div class="dev-name">MEO BOT V2</div>
+        <div class="dev-pct" style="color:var(--green)">20%</div>
+      </div>
+      <div class="dev-desc">Nâng cấp Meo Bot với slash commands, music player, level system và dashboard web</div>
+      <div class="dev-bar"><div class="dev-bar-fill" style="width:20%;background:linear-gradient(90deg,var(--green2),var(--green))"></div></div>
+      <div class="dev-meta">
+        <div class="dev-tags"><span class="dev-tag">DISCORD</span><span class="dev-tag">JS</span></div>
+        <span class="sc-badge b-dev" style="font-size:.58rem">⚙ PLANNED</span>
+      </div>
+    </div>
+    <div class="dev-card">
+      <div class="dev-card-top">
+        <div class="dev-name">YUKI HUB WEBSITE V3</div>
+        <div class="dev-pct" style="color:var(--gold)">45%</div>
+      </div>
+      <div class="dev-desc">Nâng cấp website với user system, script marketplace, live status API và hệ thống review</div>
+      <div class="dev-bar"><div class="dev-bar-fill" style="width:45%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div>
+      <div class="dev-meta">
+        <div class="dev-tags"><span class="dev-tag">WEBSITE</span><span class="dev-tag">HTML/JS</span></div>
+        <span class="sc-badge b-soon" style="font-size:.58rem">◌ IN QUEUE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="sec-head">
+    <div class="sec-head-left">
+      <div class="sec-eyebrow">About</div>
+      <div class="sec-title">Về Yuki Hub</div>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <span class="about-icon">👑</span>
+      <div class="about-title">VỀ YUKI</div>
+      <div class="about-desc" style="margin-bottom:20px">Script developer Roblox và web developer. Phát triển các công cụ miễn phí chất lượng cao cho cộng đồng Roblox Việt Nam. Mọi script đều open-source trên GitHub.</div>
+      <div class="about-row"><span class="about-label">GITHUB</span><a href="https://github.com/imz-yuki" target="_blank" class="about-val cyan" style="text-decoration:none">imz-yuki</a></div>
+      <div class="about-row"><span class="about-label">DISCORD</span><a href="https://discord.gg/CjNwU75h" target="_blank" class="about-val violet" style="text-decoration:none">discord.gg/CjNwU75h</a></div>
+      <div class="about-row"><span class="about-label">ALIAS</span><span class="about-val">Yuki · Itamaru</span></div>
+      <div class="about-row"><span class="about-label">LANGUAGE</span><span class="about-val">Lua · JavaScript · HTML</span></div>
+      <div class="about-row"><span class="about-label">STATUS</span><span class="about-val green">ACTIVE ●</span></div>
+    </div>
+    <div class="about-card">
+      <span class="about-icon">📊</span>
+      <div class="about-title">TỔNG QUAN DỰ ÁN</div>
+      <div class="about-row"><span class="about-label">TỔNG SCRIPTS</span><span class="about-val cyan">9 scripts</span></div>
+      <div class="about-row"><span class="about-label">LIVE</span><span class="about-val green">5 scripts</span></div>
+      <div class="about-row"><span class="about-label">IN DEV</span><span class="about-val" style="color:var(--orange)">2 scripts</span></div>
+      <div class="about-row"><span class="about-label">PLANNED</span><span class="about-val" style="color:var(--gold)">2 scripts</span></div>
+      <div class="about-row"><span class="about-label">GAMES HỖ TRỢ</span><span class="about-val cyan">5+ games</span></div>
+      <div class="about-row"><span class="about-label">AUTO UPDATE</span><span class="about-val green">GitHub CDN</span></div>
+      <div class="about-row"><span class="about-label">GIÁ</span><span class="about-val green">100% FREE</span></div>
+    </div>
+    <div class="about-card">
+      <span class="about-icon">🛡️</span>
+      <div class="about-title">CAM KẾT</div>
+      <div class="about-desc">Tất cả script được kiểm tra kỹ trước khi release. Code public trên GitHub — minh bạch hoàn toàn. Không có keylogger, malware hay bất kỳ nội dung độc hại nào.</div>
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:10px;align-items:center;font-size:.85rem;color:var(--t2)">
+          <span style="color:var(--green)">✓</span> Open source 100% trên GitHub
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:.85rem;color:var(--t2)">
+          <span style="color:var(--green)">✓</span> Không thu phí, không subscription
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:.85rem;color:var(--t2)">
+          <span style="color:var(--green)">✓</span> Cập nhật nhanh khi có patch
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:.85rem;color:var(--t2)">
+          <span style="color:var(--green)">✓</span> Hỗ trợ trực tiếp qua Discord
+        </div>
+      </div>
+    </div>
+    <div class="about-card">
+      <span class="about-icon">🔗</span>
+      <div class="about-title">LIÊN KẾT NHANH</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+        <a href="zenonix.html" class="btn btn-cyan btn-sm" style="justify-content:center">⌬ Zenonix Hub</a>
+        <a href="https://github.com/imz-yuki/zenonixhub" target="_blank" class="btn btn-ghost btn-sm" style="justify-content:center">📂 GitHub Repository</a>
+        <a href="https://discord.gg/CjNwU75h" target="_blank" class="btn btn-violet btn-sm" style="justify-content:center">💬 Discord Server</a>
+        <button class="btn btn-ghost btn-sm" style="justify-content:center" onclick="copyScript('zenonix')">📋 Copy Zenonix Script</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-title">Join Discord — Nhận Script Mới Nhất 🚀</div>
+  <div class="cta-desc">Tham gia server Discord để nhận thông báo script mới, báo lỗi, yêu cầu tính năng và hỗ trợ trực tiếp từ Yuki</div>
+  <div class="cta-btns">
+    <a href="https://discord.gg/CjNwU75h" target="_blank" class="btn btn-cyan">💬 Vào Discord</a>
+    <a href="https://github.com/imz-yuki/zenonixhub" target="_blank" class="btn btn-ghost">📂 GitHub</a>
+    <a href="zenonix.html" class="btn btn-violet">⌬ Zenonix Hub</a>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">YUKI<em>HUB</em></div>
+      <div class="footer-desc">// Script collection bởi Yuki (imz-yuki)<br>// Open source · Free forever · Auto update</div>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://discord.gg/CjNwU75h" target="_blank" class="btn btn-cyan btn-sm">Discord</a>
+        <a href="https://github.com/imz-yuki" target="_blank" class="btn btn-ghost btn-sm">GitHub</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">// SCRIPTS</div>
+      <div class="footer-links">
+        <a href="zenonix.html">Zenonix Hub v1.0</a>
+        <a onclick="goto('#scripts')">Kaizen Hub v14</a>
+        <a onclick="goto('#scripts')">Bounty Tracker</a>
+        <a onclick="goto('#scripts')">Meo Bot</a>
+        <a onclick="goto('#scripts')">Aurramon Web</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">// LINKS</div>
+      <div class="footer-links">
+        <a href="https://github.com/imz-yuki/zenonixhub" target="_blank">GitHub Repo</a>
+        <a href="https://discord.gg/CjNwU75h" target="_blank">Discord Server</a>
+        <a onclick="goto('#dev')">In Development</a>
+        <a onclick="goto('#about')">About Yuki</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 Yuki Hub · imz-yuki · All rights reserved</div>
+    <div>Free · Open Source · Auto Update · discord.gg/CjNwU75h</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── TICKER ──
+const ticks = [
+  "⌬ YUKI HUB v2.0","STATUS: ONLINE","ZENONIX HUB v1.0 LIVE",
+  "KAIZEN HUB v14 LIVE","MEO BOT v1.0 LIVE","BOUNTY TRACKER LIVE",
+  "UNIVERSAL GUI: 60%","ZENONIX V2: 35%","ALL SCRIPTS FREE",
+  "GITHUB: imz-yuki","DISCORD: CjNwU75h","AUTO UPDATE ACTIVE",
+];
+(()=>{
+  const el = document.getElementById('ticker');
+  const html = [...ticks,...ticks,...ticks,...ticks].map(
+    s => `<span>${s}</span><span class="sep"> ◈ </span>`
+  ).join('');
+  el.innerHTML = html + html;
+})();
+
+// ── FILTER ──
+function filterCards(type, btn) {
+  const cards = document.querySelectorAll('.script-card');
+  cards.forEach(c => {
+    const s = c.dataset.status;
+    c.style.display = (type === 'all' || s === type) ? '' : 'none';
+  });
+  document.querySelectorAll('[id^="f-"]').forEach(b => {
+    b.style.color = '';
+    b.style.borderColor = '';
+  });
+  if(btn) {
+    btn.style.color = 'var(--cyan)';
+    btn.style.borderColor = 'rgba(0,229,255,.35)';
+  }
+}
+
+// ── COPY SCRIPTS ──
+const scripts = {
+  zenonix: `loadstring(game:HttpGet("https://raw.githubusercontent.com/imz-yuki/zenonixhub/refs/heads/main/copyskin.lua"))()`,
+  kaizen:  `-- Kaizen Hub V14 -- Liên hệ Discord để nhận script đầy đủ\n-- discord.gg/CjNwU75h`,
+  bounty:  `-- Bounty Tracker -- Liên hệ Discord để nhận script\n-- discord.gg/CjNwU75h`,
+};
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function copyScript(name) {
+  const s = scripts[name];
+  if(!s) return;
+  navigator.clipboard?.writeText(s).catch(() => {});
+  showToast(`✓ Đã copy ${name.toUpperCase()} script!`);
+}
+
+// ── NAV ──
+function goto(id) {
+  document.querySelector(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── PROGRESS ANIMATION on scroll ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.querySelectorAll('.sc-prog-fill, .dev-bar-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => { bar.style.width = w; }, 100);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.script-card, .dev-card').forEach(c => observer.observe(c));
+</script>
+</body>
+</html>
